@@ -4,51 +4,22 @@ Module for the game logic
 '''
 
 class Connect4Game:
-    def __init__(self, username):
-        self.username = username
+    def __init__(self, player1, player2):
         # Initialize game state
-        pass
+        self.player1 = player1
+        self.player2 = player2
+        self.current_player = player1
+        self.board = [[' ' for _ in range(7)] for _ in range(6)]
 
     def display_board(self):
         # Display the game board
-        pass
-
-    def make_move(self, column):
-        # Make a move
-        pass
-
-    def check_winner(self):
-        # Check for a winner
-        pass
-
-    def switch_player(self):
-        # Switch player
-        pass
-
-    def play(self):
-        # Main game loop
-        while True:
-            self.display_board()
-            column = self.get_player_move()
-            if self.make_move(column):
-                if self.check_winner():
-                    self.display_board()
-                    print(f"Congratulations {self.current_player.name}! You win!")
-                    break
-                if self.board_full():
-                    self.display_board()
-                    print("It's a tie!")
-                    break
-                self.switch_player()
-
-    def get_player_move(self):
-        # Get player move input
-        pass
-
-    def board_full(self):
-        # Check if the board is full
-        pass
+        print("+---+---+---+---+---+---+---+")
+        for row in self.board:
+            print("| " + " | ".join(row) + " |")
+            print("+---+---+---+---+---+---+---+")
+        print("  1   2   3   4   5   6   7")
 
 if __name__ == "__main__":
     # Test code
-    pass
+    game = Connect4Game("Player 1", "Player 2")
+    game.display_board()
