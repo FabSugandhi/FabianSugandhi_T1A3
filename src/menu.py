@@ -2,7 +2,16 @@
 '''
 Module for the game Title Screen
 '''
+from colorama import init, Style
+init() 
+from game import Connect4Game
+# Import the Connect4Game class from game.py
 from settings import Settings
+import os
+
+def clear_screen():
+    # Clear the terminal screen
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def display_main_menu():
     print("Welcome to Connect 4!")
@@ -34,7 +43,6 @@ def customize_settings():
     
     # Save settings to file
     settings.save_settings()
-    
     print("Settings saved.")
 
 def create_new_account():
@@ -61,14 +69,55 @@ def create_new_account():
     
     print("Account created successfully.")
 
+def start_new_game():
+    # Load settings from the JSON file
+    settings = Settings()
+    settings.load_settings()
+  
+   # Get player names from user input
+    player1_name = input("Enter Player 1's username: ")
+    player2_name = input("Enter Player 2's username: ")
+    
+    # Check if any of the players are not in the settings
+    if player1_name not in settings.users or player2_name not in settings.users:
+        print("One or both players are not found")
+        if player1_name not in settings.users:
+            print(f"{player1_name} is not registered, please create new account.")
+            create_new_account()
+        if player2_name not in settings.users:
+            print(f"{player2_name} is not registered, please create new account.")
+            create_new_account()
+        
+        # Reload settings after creating new accounts
+        settings.load_settings()
+    
+    # Get pieces and colors from settings
+    player1_piece = settings.users[player1_name]['piece']
+    player2_piece = settings.users[player2_name]['piece']
+    player1_color = settings.users[player1_name]['color']
+    player2_color = settings.users[player2_name]['color']
+
+    # Create an instance of the Connect4Game class with player names, pieces, and colors
+    game = Connect4Game(player1_name, player2_name)
+    game.settings = settings  # Pass the settings object to the game instance
+    game.settings.users[player1_name]['piece'] = player1_piece
+    game.settings.users[player1_name]['color'] = player1_color
+    game.settings.users[player2_name]['piece'] = player2_piece
+    game.settings.users[player2_name]['color'] = player2_color
+    
+    # Call the play method to start the game
+    game.play()
+
 def main_menu():
     while True:
+        clear_screen()  # Clear the screen before displaying the main menu
         display_main_menu()
         choice = input("Enter your choice (1-5): ")
         
         if choice == "1":
             print("Starting a new game...")
             # Call a function to start a new game
+            start_new_game()
         elif choice == "2":
             print("Loading a saved game...")
             # Call a function to load a saved game

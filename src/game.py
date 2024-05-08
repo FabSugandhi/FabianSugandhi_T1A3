@@ -1,3 +1,5 @@
+from colorama import init, Fore, Style
+init()
 from settings import Settings
 import random
 
@@ -16,7 +18,16 @@ class Connect4Game:
         # Display the game board
         print("+---+---+---+---+---+---+---+")
         for row in self.board:
-            print("| " + " | ".join(row) + " |")
+            colored_row = []
+            for cell in row:
+                piece_color = self.settings.users[self.player1]['color'] if cell == self.settings.users[self.player1]['piece'] else None
+                if not piece_color:
+                    piece_color = self.settings.users[self.player2]['color'] if cell == self.settings.users[self.player2]['piece'] else None
+                
+                if piece_color:
+                    cell = getattr(Fore, piece_color.upper()) + cell + Style.RESET_ALL
+                colored_row.append(cell)
+            print("| " + " | ".join(colored_row) + " |")
             print("+---+---+---+---+---+---+---+")
         print("  1   2   3   4   5   6   7")
 

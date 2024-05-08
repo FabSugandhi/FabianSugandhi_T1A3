@@ -20,12 +20,14 @@ class Settings:
         with open(filename, "w") as json_file:
             json.dump(self.users, json_file, indent=4)
 
-    def add_user(self, username, settings=None):
+    def add_user(self, username, piece, color, settings=None):
         if settings is None:
             # Use default settings if none provided
             default_settings = self.users.get("Default", {})
             settings = default_settings.copy()
             settings["player_name"] = username
+        settings["piece"] = piece
+        settings["color"] = color
         self.users[username] = settings
 
     # Other methods for accessing and modifying settings...
@@ -34,5 +36,5 @@ class Settings:
 if __name__ == "__main__":
     settings = Settings()
     settings.load_settings()
-    settings.add_user("New User")  # Add a new user with default settings
+    settings.add_user("New User", "X", "red")  # Add a new user with default settings
     settings.save_settings()

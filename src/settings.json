@@ -9,5 +9,13 @@
     "Player 2": {
         "piece": "O",
         "color": "yellow"
+    },
+    "Jojo": {
+        "piece": "H",
+        "color": "magenta"
+    },
+    "Dio": {
+        "piece": "D",
+        "color": "yellow"
     }
 }
