@@ -1,1 +1,13 @@
-{"user1": {"player1_name": "Player 1", "player2_name": "Player 2", "player1_piece": "X", "player2_piece": "O", "player1_color": "Red", "player2_color": "Yellow", "match_history": []}}
+{
+    "New User": {
+        "player_name": "New User"
+    },
+    "Player 1": {
+        "piece": "X",
+        "color": "red"
+    },
+    "Player 2": {
+        "piece": "O",
+        "color": "yellow"
+    }
+}

@@ -7,37 +7,32 @@ import json
 
 class Settings:
     def __init__(self):
-        self.users = {}  # Dictionary to store user accounts
+        self.users = {}
 
-    def create_user(self, username):
-        if username not in self.users:
-            self.users[username] = {
-                'player1_name': "Player 1",
-                'player2_name': "Player 2",
-                'player1_piece': "X",
-                'player2_piece': "O",
-                'player1_color': "Red",
-                'player2_color': "Yellow",
-                'match_history': []
-            }
-            return True
-        else:
-            print("Username already exists. Please choose a different username.")
-            return False
-
-    def save_settings(self, filename='settings.json'):
-        with open(filename, 'w') as f:
-            json.dump(self.users, f)
-
-    def load_settings(self, filename='settings.json'):
+    def load_settings(self, filename="settings.json"):
         try:
-            with open(filename, 'r') as f:
-                self.users = json.load(f)
+            with open(filename, "r") as json_file:
+                self.users = json.load(json_file)
         except FileNotFoundError:
-            print("Settings file not found. Creating a new one.")
+            print(f"Settings file '{filename}' not found. Using default settings.")
 
+    def save_settings(self, filename="settings.json"):
+        with open(filename, "w") as json_file:
+            json.dump(self.users, json_file, indent=4)
+
+    def add_user(self, username, settings=None):
+        if settings is None:
+            # Use default settings if none provided
+            default_settings = self.users.get("Default", {})
+            settings = default_settings.copy()
+            settings["player_name"] = username
+        self.users[username] = settings
+
+    # Other methods for accessing and modifying settings...
+
+# Example usage:
 if __name__ == "__main__":
     settings = Settings()
     settings.load_settings()
-    settings.create_user("user1")
+    settings.add_user("New User")  # Add a new user with default settings
     settings.save_settings()
