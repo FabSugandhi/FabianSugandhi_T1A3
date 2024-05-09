@@ -80,7 +80,7 @@ class Connect4Game:
         while True:
             while True:
                 self.display_board()
-                column = input(f"Player {self.players[self.current_player_index]}, enter column number to drop piece: ")
+                column = input(f"{self.players[self.current_player_index]}, enter column number to drop piece: ")
                 if column.isdigit():
                     column = int(column)
                     if 1 <= column <= 7:
