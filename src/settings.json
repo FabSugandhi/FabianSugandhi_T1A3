@@ -1,21 +1,32 @@
 {
-    "New User": {
-        "player_name": "New User"
-    },
-    "Player 1": {
-        "piece": "X",
-        "color": "red"
-    },
-    "Player 2": {
-        "piece": "O",
-        "color": "yellow"
-    },
     "Jojo": {
-        "piece": "H",
-        "color": "magenta"
+        "piece": "J",
+        "color": "magenta",
+        "matches_won": 6,
+        "matches_lost": 1
     },
     "Dio": {
         "piece": "D",
-        "color": "yellow"
+        "color": "yellow",
+        "matches_won": 1,
+        "matches_lost": 6
+    },
+    "Giorno": {
+        "piece": "G",
+        "color": "magenta",
+        "matches_won": 1,
+        "matches_lost": 0
+    },
+    "Kira": {
+        "piece": "X",
+        "color": "white",
+        "matches_won": 0,
+        "matches_lost": 2
+    },
+    "Diavolo": {
+        "piece": "D",
+        "color": "red",
+        "matches_won": 1,
+        "matches_lost": 0
     }
 }

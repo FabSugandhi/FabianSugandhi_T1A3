@@ -73,6 +73,9 @@ class Connect4Game:
         self.board = [[' ' for _ in range(7)] for _ in range(6)]
         self.current_player_index = random.randint(0, 1)  # Random player
 
+    def update_match_history(self, winner, loser):
+        self.settings.update_match_history(winner, loser)  # Call the update_match_history method from Settings class
+
     def play(self):
         while True:
             while True:
@@ -89,7 +92,11 @@ class Connect4Game:
                                     break
                             if self.check_winner(self.settings.users[self.players[self.current_player_index]]['piece'], last_row, column - 1):
                                 print(f"Player {self.players[self.current_player_index]} wins!")
+                                self.update_match_history(self.players[self.current_player_index], self.players[(self.current_player_index + 1) % 2])
+                                self.settings.save_settings()  # Save settings after each match
                                 self.display_board()
+                                print(f"{self.player1}'s record: {self.settings.get_match_history(self.player1)}")
+                                print(f"{self.player2}'s record: {self.settings.get_match_history(self.player2)}")
                                 break
                             elif self.check_draw():
                                 print("The game is a draw!")
@@ -97,7 +104,7 @@ class Connect4Game:
                                 break
                             else:
                                 self.current_player_index = (self.current_player_index + 1) % 2
-                                print(self.current_player_index)
+                                print(f"Player {self.players[self.current_player_index]}'s turn")
                         else:
                             print("Column is full. Please choose another column.")
                     else:

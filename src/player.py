@@ -12,6 +12,9 @@ class Player:
     def add_match_record(self, opponent, result):
         self.match_history.append({'opponent': opponent, 'result': result})
 
+    def get_match_history(self):
+        return self.match_history
+
     def __str__(self):
         return f"{self.name}: {self.piece} ({self.color})"
 

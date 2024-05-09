@@ -16,10 +16,9 @@ def clear_screen():
 def display_main_menu():
     print("Welcome to Connect 4!")
     print("1. Start New Game")
-    print("2. Load Saved Game")
-    print("3. Customize Settings")
-    print("4. Create New Account")
-    print("5. Quit")
+    print("2. Customize Settings")
+    print("3. Create New Account")
+    print("4. Quit")
 
 def customize_settings():
     settings = Settings()
@@ -27,23 +26,28 @@ def customize_settings():
     
     print("Customizing settings...")
     
-    # Get player customization inputs
+    # Initialize variables
     player1_name = input("Enter Player 1's username: ")
-    player2_name = input("Enter Player 2's username: ")
-    player1_piece = input(f"Enter {player1_name}'s piece type (e.g., 'X'): ")
-    player2_piece = input(f"Enter {player2_name}'s piece type (e.g., 'O'): ")
-    player1_color = input(f"Enter {player1_name}'s color (e.g., 'red'): ")
-    player2_color = input(f"Enter {player2_name}'s color (e.g., 'blue'): ")
+    player1_piece = None
+    player1_color = None
     
-    # Update player settings directly in the Settings object
-    settings.users[player1_name]['piece'] = player1_piece
-    settings.users[player1_name]['color'] = player1_color
-    settings.users[player2_name]['piece'] = player2_piece
-    settings.users[player2_name]['color'] = player2_color
+    # Check if the player is not found in the settings
+    if player1_name not in settings.users:
+        print(f"{player1_name} is not registered, please create a new account.")
+        create_new_account()
+    else:
+        # Player found, proceed with customization
+        player1_piece = input(f"Enter {player1_name}'s piece type (e.g., 'X'): ")
+        player1_color = input(f"Enter {player1_name}'s color (e.g., 'red'): ")
     
-    # Save settings to file
-    settings.save_settings()
-    print("Settings saved.")
+    # Update player settings directly in the Settings object if player is found
+    if player1_piece is not None and player1_color is not None:
+        settings.users[player1_name]['piece'] = player1_piece
+        settings.users[player1_name]['color'] = player1_color
+        
+        # Save settings to file
+        settings.save_settings()
+        print("Settings saved.")
 
 def create_new_account():
     settings = Settings()
@@ -54,7 +58,16 @@ def create_new_account():
     # Get account information
     new_username = input("Enter your desired username: ")
     new_piece = input("Enter your desired piece type (e.g., 'X'): ")
-    new_color = input("Enter your desired color (e.g., 'red'): ")
+    
+     # Keep prompting until a valid color is entered
+    while True:
+        new_color = input("Enter your desired color (valid colors are: red, green, yellow, blue, magenta, cyan, white.): ").lower()  # Convert to lowercase for consistency
+        
+        # Check if the entered color is valid
+        if new_color in ["red", "green", "yellow", "blue", "magenta", "cyan", "white"]:
+            break  # Exit the loop if a valid color is entered
+        else:
+            print("Invalid color. Please choose from: red, green, yellow, blue, magenta, cyan, white.")
     
     # Check if the username already exists
     if new_username in settings.users:
@@ -112,20 +125,17 @@ def main_menu():
     while True:
         clear_screen()  # Clear the screen before displaying the main menu
         display_main_menu()
-        choice = input("Enter your choice (1-5): ")
+        choice = input("Enter your choice (1-4): ")
         
         if choice == "1":
             print("Starting a new game...")
             # Call a function to start a new game
             start_new_game()
         elif choice == "2":
-            print("Loading a saved game...")
-            # Call a function to load a saved game
-        elif choice == "3":
             customize_settings()
-        elif choice == "4":
+        elif choice == "3":
             create_new_account()
-        elif choice == "5":
+        elif choice == "4":
             print("Goodbye!")
             break
         else:
