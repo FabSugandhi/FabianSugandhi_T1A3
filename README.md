@@ -110,4 +110,9 @@ Here are the screenshots of my project management platform and the issue items.
 
 ### System Requirements
 
-Running this application requires Python 3 to be installed in your system.
+Running this application requires Python 3 to be installed in your system. If you don't have it installed already, you can download it through this [link](https://www.python.org/downloads/). If you have Python already installed, you might want to check your Python version to make sure it is able to run this application. To check the installation status and the version of your Python, you can run the following line from your terminal:
+```
+python --version
+```
+This comman will display the version of Python that is installed in your system. This application was developed using Python version 3.12, and thus it is the recommended version. If you have a lower version of Python installed, you can refer to the link above to update your Python installation.
+
