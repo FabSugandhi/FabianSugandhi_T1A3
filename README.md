@@ -51,3 +51,63 @@ Once a game is completed, the winning board will be shown and the match result w
 This feature allows the user to create their own personal account, with customized username, piece color, and piece shape. This feature also records the match results of each user account, which will be displayed after each game. The user data is storen in a separate JSON file title "settings.json" as a dictionary each with their own unique information, saved in the same directory as the other python files for easy access.
 
 All functions that relates to the saving and loading of these user information into and from the JSON file are all constrained in one python file, that is **settings.py**.
+
+## Implementation Plan
+
+In order to keep track and manage the deadline of this assignment, I have used [GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects) as my project management platform (GitHub, 2023). The process of this project setup was as follows:
+- Create issue items for each feature of the application (game logic, main menu, settings).
+- Create issue items for other steps of the application development (testing, debugging, cleaning up, etc.).
+- Create lists of taks that will be involved in developing each of the issue items.
+- Rearrange and edit some of the task items as the project develops and ideas get added or removed.
+
+Each of the issue items were also assigned to specific dates in order to maintain consistency of the project workflow as each items are connected with each other. Although, in the end the schedule was not followed as closely as I overestimated the time required to complete certain tasks (such as the menu integration) and underestimated for other tasks (such as the player settings and game logic). 
+
+Here are the screenshots of my project management platform and the issue items.
+
+### Current State of Implementation Plan (End of Project Screenshots)
+
+#### Overview of Implementation Plan
+
+![Implementation Plan](./docs/Implement_Plan.png)
+
+#### Project Setup
+
+![Project Setup](./docs/Implement_Setup.png)
+
+#### Player Settings
+
+![Player Settings](./docs/Implement_Settings.png)
+
+#### Title Screen
+
+![Title Screen](./docs/Implement_Menu.png)
+
+#### Game Logic
+
+![Game Logic](./docs/Implement_Game.png)
+
+#### Integrate Menu with Game
+
+![Menu Integration](./docs/Implement_Integrate.png)
+
+#### Refine Settings and Player Customization
+
+![Refine Settings](./docs/Implement_Refine.png)
+
+#### Improve Code
+
+![Improve Code](./docs/Implement_Improve.png)
+
+#### Testing and Debugging
+
+![Testing and Debugging](./docs/Implement_Test.png)
+
+#### End Project Documentation
+
+![Documentation](./docs/Implement_Documentation.png)
+
+## Help
+
+### System Requirements
+
+Running this application requires Python 3 to be installed in your system.
